@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- CORRECTED -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - School Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <img src="ASMLogo.webp" alt="School Logo" id="logo-img">
+            </div>
+            <div class="user-info">
+                <a href="#notifications" class="notification-bell">
+                    <span>&#128276</span> <!-- CORRECTED BELL -->
+                    <span class="notification-dot"></span>
+                </a>
+                <span class="welcome-text">Adam Reed</span>
+                <div class="avatar-placeholder">
+                    <img src="my_avatar.jpg" alt="User Avatar">
+                </div>
+                <a href="#logout" class="logout-link">Logout</a>
+            </div>
+        </header>
+
+        <div class="app-layout">
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li class="active"><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#calendar">School Calendar</a></li>
+                        <li><a href="#email">Email</a></li>
+                        <li><a href="#profile">My Profile</a></li>
+                        <!-- Add more links here later -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <h1>My Classes</h1>
+                <div class="class-grid">
+                    <!-- WRAPPER LINK -->
+                    <a href="class_page.html" class="class-card-link"> 
+                        <div class="class-card class-card-color1">
+                            <span class="grade-level">7th/8th grade</span>
+                            <h3 class="class-title">ELA</h3>
+                        </div>
+                    </a>
+                    <div class="class-card class-card-color2"> 
+                        <span class="grade-level">10th grade</span>
+                        <h3 class="class-title">Speaking and Writing</h3>
+                    </div>
+                    <div class="class-card class-card-color3"> 
+                        <span class="grade-level">11th/12th grade</span>
+                        <h3 class="class-title">US Government</h3>
+                    </div>
+                    <div class="class-card class-card-color4"> 
+                        <span class="grade-level">11th/12th grade</span>
+                        <h3 class="class-title">American Literature</h3>
+                    </div>
+                    <div class="class-card class-card-color5"> 
+                        <span class="grade-level">11th/12th grade</span>
+                        <h3 class="class-title">US History</h3>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

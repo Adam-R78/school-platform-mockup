@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - School Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <img src="ASMLogo.webp" alt="School Logo" id="logo-img">
+            </div>
+            <div class="user-info">
+                <a href="#notifications" class="notification-bell">
+                    <span></span> <!-- Bell icon -->
+                    <span class="notification-dot"></span>
+                </a>
+                <span class="welcome-text">Admin User</span> <!-- Changed user name -->
+                <div class="avatar-placeholder">
+                    <img src="my_avatar.jpg" alt="User Avatar"> <!-- Placeholder avatar -->
+                </div>
+                <a href="#logout" class="logout-link">Logout</a>
+            </div>
+        </header>
+
+        <div class="app-layout">
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li class="active"><a href="admin_dashboard.html">Dashboard</a></li>
+                        <li><a href="#user-management">User Management</a></li>
+                        <li><a href="#course-management">Course Management</a></li>
+                        <li><a href="#system-settings">System Settings</a></li>
+                        <li><a href="#announcements">Announcements</a></li>
+                        <li><a href="#reports">Reports</a></li>
+                        <li><a href="teacher_dashboard.html">Teacher View</a></li> <!-- Link to teacher dashboard -->
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <h1>Admin Dashboard</h1>
+                <div class="class-grid"> <!-- Reusing class-grid for admin action items -->
+                    
+                    <a href="#user-management-page" class="class-card-link"> 
+                        <div class="class-card class-card-color1">
+                            <!-- Icon could be added here later, e.g., <i class="fas fa-users"></i> -->
+                            <h3 class="class-title">Manage Users</h3>
+                            <span class="grade-level">Teachers, Students, Staff</span>
+                        </div>
+                    </a>
+
+                    <a href="#course-management-page" class="class-card-link">
+                        <div class="class-card class-card-color2">
+                            <h3 class="class-title">Manage Courses</h3>
+                            <span class="grade-level">Subjects, Classes, Enrollment</span>
+                        </div>
+                    </a>
+
+                    <a href="#system-settings-page" class="class-card-link">
+                        <div class="class-card class-card-color3">
+                            <h3 class="class-title">System Settings</h3>
+                            <span class="grade-level">School Year, Grading, Permissions</span>
+                        </div>
+                    </a>
+
+                    <a href="#announcements-page" class="class-card-link">
+                        <div class="class-card class-card-color4">
+                            <h3 class="class-title">Post Announcements</h3>
+                            <span class="grade-level">School-wide communication</span>
+                        </div>
+                    </a>
+
+                    <a href="#reports-page" class="class-card-link">
+                        <div class="class-card class-card-color5">
+                            <h3 class="class-title">Generate Reports</h3>
+                            <span class="grade-level">Attendance, Grades, Usage</span>
+                        </div>
+                    </a>
+                    
+                    <a href="#backup-restore-page" class="class-card-link">
+                        <div class="class-card class-card-color1"> <!-- Reused color1, can be varied -->
+                            <h3 class="class-title">Backup & Restore</h3>
+                            <span class="grade-level">System data integrity</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- Font Awesome for icons (optional, if you want to add them to cards/buttons) -->
+    <!-- <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script> -->
+</body>
+</html>

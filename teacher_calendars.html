@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Calendars - School Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <img src="images/ASMLogo.webp" alt="School Logo" id="logo-img">
+            </div>
+            <div class="user-info">
+                <a href="#notifications" class="notification-bell">
+                    <span>&#128276</span> 
+                    <span class="notification-dot"></span>
+                </a>
+                <span class="welcome-text">Adam Reed</span>
+                <div class="avatar-placeholder">
+                    <img src="images/my_avatar.jpg" alt="User Avatar">
+                </div>
+                <a href="#logout" class="logout-link">Logout</a>
+            </div>
+        </header>
+
+        <div class="app-layout">
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li><a href="teacher_dashboard.html">Dashboard</a></li>
+                        <li><a href="#email">Email</a></li>
+                        <li><a href="#gclassroom">Google Classroom</a></li>
+                        <li><a href="#gdrive">Google Drive</a></li>
+						<li class="active"><a href="teacher_calendars.html">Calendars</a></li>
+						<li><a href="#profile">My Profile</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+    <h1>My Calendars</h1>
+
+    <div class="calendar-section">
+        <h2>Academic Year Overview</h2>
+        <div class="calendar-widget static-image-calendar">
+            <!-- Placeholder for a static image calendar -->
+            <img src="images/placeholder_academic_calendar.png" alt="Academic Year Calendar Placeholder">
+            <p class="caption">(e.g., School Year 2024-2025 PDF/Image)</p>
+        </div>
+    </div>
+
+    <div class="calendar-section">
+        <h2>My Teaching Schedule</h2>
+        <div class="calendar-widget google-calendar-embed">
+            <!-- Placeholder for an embedded Google Calendar -->
+            <iframe 
+                src="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York" 
+                style="border: 0" 
+                width="100%" 
+                height="600" 
+                frameborder="0" 
+                scrolling="no">
+            </iframe>
+            <p class="caption">(e.g., Embedded Google Calendar for personal teaching schedule)</p>
+        </div>
+    </div>
+
+    <div class="calendar-section">
+        <h2>School-Wide Events</h2>
+        <div class="calendar-widget google-calendar-embed">
+            <!-- Placeholder for another embedded Google Calendar -->
+            <iframe 
+                src="https://calendar.google.com/calendar/embed?src=p%23weather%40group.v.calendar.google.com&ctz=America%2FNew_York" 
+                style="border: 0" 
+                width="100%" 
+                height="600" 
+                frameborder="0" 
+                scrolling="no">
+            </iframe>
+             <p class="caption">(e.g., Embedded Google Calendar for all school events)</p>
+        </div>
+    </div>
+
+    <div class="calendar-section">
+        <h2>Upcoming ELA Deadlines</h2>
+        <div class="calendar-widget dynamic-calendar-placeholder">
+            <p><strong>Week of Oct 28 - Nov 3:</strong></p>
+            <ul>
+                <li>Oct 29: Unit 3 Quiz - 7th Grade ELA</li>
+                <li>Nov 1: Essay Draft Due - 8th Grade ELA</li>
+            </ul>
+            <p><strong>Week of Nov 4 - Nov 10:</strong></p>
+            <ul>
+                <li>Nov 5: Parent-Teacher Conferences (No regular classes)</li>
+                <li>Nov 8: Reading Response 4 Due - 7th Grade ELA</li>
+            </ul>
+            <p class="caption" style="margin-top: 10px;">(Placeholder: This content would be dynamically generated based on assignments entered into the system.)</p>
+        </div>
+    </div>
+
+</main>
+        </div>
+    </div>
+</body>
+</html>

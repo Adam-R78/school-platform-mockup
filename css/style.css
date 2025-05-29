@@ -122,8 +122,6 @@ a:hover {
     text-decoration: underline; /* Underline logout link on hover */
 }
 
-/* REMOVED duplicate .header .user-info and general .header .user-info span/a rules */
-
 /* App Layout (Sidebar + Main Content) */
 .app-layout {
     display: flex;
@@ -185,14 +183,14 @@ a:hover {
     color: #212529;
 }
 
-/* Class Grid Styles (Dashboard) */
-.class-grid {
+/* Card Grid Styles (Dashboard / Item Grids) */
+.card-grid { /* UPDATED from class-grid */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
-.class-card {
+.content-card { /* UPDATED from class-card */
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
@@ -207,61 +205,61 @@ a:hover {
     align-items: center;
 }
 
-.class-card:hover {
+.content-card:hover { /* UPDATED from class-card:hover */
     transform: translateY(-6px);
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
 }
 
-.class-card .grade-level {
+.content-card .card-subtitle { /* UPDATED from .class-card .grade-level */
     display: block;
     font-size: 1.0em;
     color: #555;
     margin-bottom: 5px;
 }
 
-.class-card .class-title {
+.content-card .card-title { /* UPDATED from .class-card .class-title */
     margin: 0;
     font-size: 1.25em;
     color: #343a40;
     line-height: 1.3;
 }
 
-/* Styles for making class-cards on dashboard clickable links */
-.class-card-link {
+/* Styles for making content-cards on dashboard clickable links */
+.card-link { /* UPDATED from class-card-link */
     text-decoration: none;
     color: inherit;
     display: block;
 }
-.class-card-link:hover {
-    text-decoration: none; /* CORRECTED: Ensure no underline on hover for the card link */
+.card-link:hover { /* UPDATED from class-card-link:hover */
+    text-decoration: none;
 }
-/* The text inside .class-card (grade-level, class-title) will retain its own color */
-/* and should not be underlined due to the above. */
 
 
-/* Colored Button Styles for Dashboard Class Cards (These are white already) */
-.class-card-color1 { background-color: #FFFFFF; }
-.class-card-color1 .grade-level,
-.class-card-color1 .class-title { color: #212529; }
+/* Colored/Styled Button Styles for Dashboard Content Cards */
+/* These primarily ensure text color on a white background, could be actual color variants later */
+.content-card-style1 { background-color: #FFFFFF; } /* UPDATED from class-card-color1 */
+.content-card-style1 .card-subtitle, /* UPDATED */
+.content-card-style1 .card-title { color: #212529; } /* UPDATED */
 
-.class-card-color2 { background-color: #FFFFFF; }
-.class-card-color2 .grade-level,
-.class-card-color2 .class-title { color: #212529; }
+.content-card-style2 { background-color: #FFFFFF; } /* UPDATED from class-card-color2 */
+.content-card-style2 .card-subtitle, /* UPDATED */
+.content-card-style2 .card-title { color: #212529; } /* UPDATED */
 
-.class-card-color3 { background-color: #FFFFFF; }
-.class-card-color3 .grade-level,
-.class-card-color3 .class-title { color: #212529; }
+.content-card-style3 { background-color: #FFFFFF; } /* UPDATED from class-card-color3 */
+.content-card-style3 .card-subtitle, /* UPDATED */
+.content-card-style3 .card-title { color: #212529; } /* UPDATED */
 
-.class-card-color4 { background-color: #FFFFFF; }
-.class-card-color4 .grade-level,
-.class-card-color4 .class-title { color: #212529; }
+.content-card-style4 { background-color: #FFFFFF; } /* UPDATED from class-card-color4 */
+.content-card-style4 .card-subtitle, /* UPDATED */
+.content-card-style4 .card-title { color: #212529; } /* UPDATED */
 
-.class-card-color5 { background-color: #FFFFFF; }
-.class-card-color5 .grade-level,
-.class-card-color5 .class-title { color: #212529; }
+.content-card-style5 { background-color: #FFFFFF; } /* UPDATED from class-card-color5 */
+.content-card-style5 .card-subtitle, /* UPDATED */
+.content-card-style5 .card-title { color: #212529; } /* UPDATED */
 
 
-/* === CLASS PAGE SPECIFIC STYLES === */
+/* === CLASS PAGE SPECIFIC STYLES (Action Buttons) === */
+/* These are already well-named and distinct, so no changes needed here unless you want to unify their look with content-cards further */
 .action-button-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -274,7 +272,6 @@ a:hover {
     color: #212529;
     padding: 25px 15px;
     border-radius: 8px;
-    /* UPDATED SHADOW TO MATCH DASHBOARD CARDS */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5); 
     text-align: center;
     font-size: 1.1em;
@@ -288,7 +285,6 @@ a:hover {
 
 .action-button:hover {
     background-color: #FFFFFF;
-    /* UPDATED TRANSFORM AND SHADOW TO MATCH DASHBOARD CARDS HOVER */
     transform: translateY(-6px); 
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
 }
@@ -298,15 +294,15 @@ a:hover {
 }
 
 
-/* Placeholder for Add New Class (optional) */
-/* ... (rest of CSS is the same) ... */
-.add-new-placeholder {
+/* Placeholder for Add New (optional) */
+.add-new-placeholder { /* This was class-card before, making it more generic if it's styled like a card */
     border: 2px dashed #ced4da;
     color: #6c757d;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1em;
+    /* If it should look like other content-cards, add relevant .content-card styles here or add the .content-card class to its HTML */
 }
 .add-new-placeholder:hover {
     border-color: #007bff;
@@ -327,7 +323,7 @@ a:hover {
     .main-content, .sidebar {
         height: auto;
     }
-    .class-grid {
+    .card-grid { /* UPDATED from class-grid */
         grid-template-columns: 1fr;
     }
     .action-button-grid {

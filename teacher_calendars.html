@@ -276,10 +276,21 @@ document.addEventListener('DOMContentLoaded', () => {
             mainModalBody.innerHTML = ''; 
 
             if (type === 'image') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-content-wrapper';
+
                 const img = document.createElement('img');
                 img.src = source;
                 img.alt = title;
-                mainModalBody.appendChild(img);
+                
+                wrapper.appendChild(img);
+                mainModalBody.appendChild(wrapper);
+
+                // Add click listener for zoom functionality
+                wrapper.addEventListener('click', () => {
+                    wrapper.classList.toggle('is-zoomed');
+                });
+
             } else if (type === 'iframe') {
                 const iframe = document.createElement('iframe');
                 iframe.src = source;

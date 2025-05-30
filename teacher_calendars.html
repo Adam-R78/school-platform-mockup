@@ -122,7 +122,10 @@
                         <label for="assessmentDate">Date:</label>
                         <input type="date" id="assessmentDate" name="assessmentDate" required>
                     </div>
-                    <div>
+                    <div>  <!-- NEW FIELD WRAPPER -->
+                        <label for="assessmentGrade">Grade:</label>
+                        <input type="text" id="assessmentGrade" name="assessmentGrade" placeholder="e.g., 7th, 8th, All"> 
+                    </div> <!-- END NEW FIELD WRAPPER --><div>
                         <label for="assessmentSubject">Subject:</label>
                         <input type="text" id="assessmentSubject" name="assessmentSubject" required>
                     </div>
@@ -158,8 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Mock Assessment Data ---
     let assessmentEntries = [
-        { date: '2024-10-15', subject: 'Math', description: 'Unit 3 Test - Algebra' },
-        { date: '2024-10-22', subject: 'ELA', description: 'Essay Draft 1 Due' }
+        { date: '2024-10-15', grade: '7th', subject: 'Math', description: 'Unit 3 Test - Algebra' },
+        { date: '2024-10-22', grade: '8th', subject: 'ELA', description: 'Essay Draft 1 Due' }
     ]; // Replace YYYY with current year for display
 
     function openModal(modalElement) {
@@ -242,11 +245,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (entry.date === currentDateStr) {
                     const entryEl = document.createElement('div');
                     entryEl.className = 'assessment-entry';
+
+                    let entryText = '';
+                    if (entry.grade) { // Check if grade exists
+                        entryText += `<strong>${entry.grade}</strong> - `;
+                    }
+                    entryText += entry.subject;
                     
-                    const subjectEl = document.createElement('span');
-                    subjectEl.className = 'entry-subject';
-                    subjectEl.textContent = entry.subject;
-                    entryEl.appendChild(subjectEl);
+                    const subjectAndGradeEl = document.createElement('span');
+                    subjectAndGradeEl.className = 'entry-subject'; // Can reuse or make new class
+                    subjectAndGradeEl.innerHTML = entryText; // Use innerHTML because of <strong>
+                    entryEl.appendChild(subjectAndGradeEl);
 
                     if (entry.description) {
                         const tooltipEl = document.createElement('span');
@@ -323,7 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const newEntry = {
             date: document.getElementById('assessmentDate').value,
-            subject: document.getElementById('assessmentSubject').value,
+            grade: document.getElementById('assessmentGrade').value,
+			subject: document.getElementById('assessmentSubject').value,
             description: document.getElementById('assessmentDescription').value
         };
         assessmentEntries.push(newEntry);

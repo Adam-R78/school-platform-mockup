@@ -55,7 +55,7 @@
 
         <a href="javascript:void(0);" class="card-link calendar-trigger" 
            data-type="iframe" 
-           data-source="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York" 
+           data-source="https://calendar.google.com/calendar/embed?src=adam.reed%40asm.edu.mk&ctz=Europe%2FBelgrade"
            data-title="Google Calendar">
             <div class="content-card content-card-style2">
                 <h3 class="card-title">Google Calendar</h3>
@@ -139,5 +139,202 @@
 </main>
         </div>
     </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Main Modal Elements
+    const mainModal = document.getElementById('calendarModal');
+    const mainModalTitle = document.getElementById('modalTitle');
+    const mainModalBody = document.getElementById('modalBody');
+    const mainModalCloseButton = document.getElementById('modalCloseButton');
+    const mainModalOverlay = mainModal.querySelector('.modal-overlay'); // Corrected selector
+
+    // Add Assessment Entry Modal Elements
+    const addEntryModal = document.getElementById('addAssessmentEntryModal');
+    const addEntryModalCloseButton = document.getElementById('addEntryModalCloseButton');
+    const addEntryForm = document.getElementById('addAssessmentForm');
+    const addEntryModalOverlay = addEntryModal.querySelector('.modal-overlay'); // Corrected selector
+
+    const calendarTriggers = document.querySelectorAll('.calendar-trigger');
+
+    // --- Mock Assessment Data ---
+    let assessmentEntries = [
+        { date: '2024-10-15', subject: 'Math', description: 'Unit 3 Test - Algebra' },
+        { date: '2024-10-22', subject: 'ELA', description: 'Essay Draft 1 Due' }
+    ]; // Replace YYYY with current year for display
+
+    function openModal(modalElement) {
+        modalElement.classList.add('is-visible');
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeModal(modalElement) {
+        modalElement.classList.remove('is-visible');
+        if (modalElement === mainModal) {
+            mainModalBody.innerHTML = ''; // Clear previous content only for main modal
+        }
+        // Check if any modal is visible before restoring scroll
+        if (!document.querySelector('.modal.is-visible')) {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    function createAssessmentCalendarHTML(year, month) { // month is 0-indexed (0=Jan, 11=Dec)
+        mainModalBody.innerHTML = ''; // Clear previous content
+
+        const container = document.createElement('div');
+        container.className = 'assessment-calendar-container';
+
+        const header = document.createElement('div');
+        header.className = 'assessment-calendar-header';
+        
+        const monthYearDisplay = document.createElement('span');
+        monthYearDisplay.className = 'assessment-calendar-month-year';
+        const dateForHeader = new Date(year, month);
+        monthYearDisplay.textContent = dateForHeader.toLocaleString('default', { month: 'long', year: 'numeric' });
+        
+        const addButton = document.createElement('button');
+        addButton.className = 'add-assessment-entry-button';
+        addButton.textContent = '+ Add Entry';
+        addButton.addEventListener('click', () => {
+            addEntryForm.reset(); // Clear form
+            // Pre-fill date if possible, e.g., to first of current month or selected date
+            const today = new Date(year, month, 1).toISOString().split('T')[0];
+            document.getElementById('assessmentDate').value = today;
+            openModal(addEntryModal);
+        });
+
+        header.appendChild(monthYearDisplay);
+        header.appendChild(addButton);
+        container.appendChild(header);
+
+        const grid = document.createElement('div');
+        grid.className = 'assessment-calendar-grid';
+
+        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        daysOfWeek.forEach(day => {
+            const dayHeaderEl = document.createElement('div');
+            dayHeaderEl.className = 'calendar-day-header';
+            dayHeaderEl.textContent = day;
+            grid.appendChild(dayHeaderEl);
+        });
+
+        const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 for Sunday, 1 for Monday...
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstDayOfMonth; i++) { // Blank cells for previous month
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'calendar-day other-month';
+            grid.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayCell = document.createElement('div');
+            dayCell.className = 'calendar-day';
+            
+            const dayNumber = document.createElement('span');
+            dayNumber.className = 'day-number';
+            dayNumber.textContent = day;
+            dayCell.appendChild(dayNumber);
+
+            // Find and display entries for this day
+            const currentDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            assessmentEntries.forEach(entry => {
+                if (entry.date === currentDateStr) {
+                    const entryEl = document.createElement('div');
+                    entryEl.className = 'assessment-entry';
+                    
+                    const subjectEl = document.createElement('span');
+                    subjectEl.className = 'entry-subject';
+                    subjectEl.textContent = entry.subject;
+                    entryEl.appendChild(subjectEl);
+
+                    if (entry.description) {
+                        const tooltipEl = document.createElement('span');
+                        tooltipEl.className = 'entry-tooltip';
+                        tooltipEl.textContent = entry.description;
+                        entryEl.appendChild(tooltipEl);
+                    }
+                    dayCell.appendChild(entryEl);
+                }
+            });
+            grid.appendChild(dayCell);
+        }
+        container.appendChild(grid);
+        mainModalBody.appendChild(container);
+    }
+
+
+    calendarTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault(); 
+
+            const type = trigger.dataset.type;
+            const source = trigger.dataset.source;
+            const title = trigger.dataset.title;
+            
+            mainModalTitle.textContent = title || 'Calendar';
+            mainModalBody.innerHTML = ''; 
+
+            if (type === 'image') {
+                const img = document.createElement('img');
+                img.src = source;
+                img.alt = title;
+                mainModalBody.appendChild(img);
+            } else if (type === 'iframe') {
+                const iframe = document.createElement('iframe');
+                iframe.src = source;
+                iframe.setAttribute('frameborder', '0');
+                mainModalBody.appendChild(iframe);
+            } else if (type === 'assessment') {
+                const today = new Date();
+                // Ensure assessmentEntries dates are updated to current year for realistic demo
+                assessmentEntries = assessmentEntries.map(entry => ({
+                    ...entry,
+                    date: entry.date.replace(/^\d{4}/, today.getFullYear().toString())
+                }));
+                createAssessmentCalendarHTML(today.getFullYear(), today.getMonth());
+            }
+            
+            openModal(mainModal);
+        });
+    });
+
+    // Event Listeners for Main Modal
+    mainModalCloseButton.addEventListener('click', () => closeModal(mainModal));
+    mainModalOverlay.addEventListener('click', () => closeModal(mainModal));
+
+    // Event Listeners for Add Entry Modal
+    addEntryModalCloseButton.addEventListener('click', () => closeModal(addEntryModal));
+    addEntryModalOverlay.addEventListener('click', () => closeModal(addEntryModal));
+
+    addEntryForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const newEntry = {
+            date: document.getElementById('assessmentDate').value,
+            subject: document.getElementById('assessmentSubject').value,
+            description: document.getElementById('assessmentDescription').value
+        };
+        assessmentEntries.push(newEntry);
+        assessmentEntries.sort((a, b) => new Date(a.date) - new Date(b.date)); // Keep sorted
+        
+        closeModal(addEntryModal);
+        // Refresh the assessment calendar view in the main modal
+        const today = new Date(); // Or get current displayed month/year from somewhere
+        createAssessmentCalendarHTML(today.getFullYear(), today.getMonth()); 
+        // A more robust solution would remember the currently viewed month/year
+    });
+
+    // Global Escape Key Listener
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            if (addEntryModal.classList.contains('is-visible')) {
+                closeModal(addEntryModal);
+            } else if (mainModal.classList.contains('is-visible')) {
+                closeModal(mainModal);
+            }
+        }
+    });
+});
+</script>
 </body>
 </html>

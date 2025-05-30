@@ -330,3 +330,143 @@ a:hover {
         grid-template-columns: 1fr;
     }
 }
+/* Styles for the mock Assessment Calendar grid */
+.assessment-calendar-container {
+    /* Styles for the overall container if needed */
+}
+
+.assessment-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.assessment-calendar-month-year {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.add-assessment-entry-button {
+    background-color: #28a745; /* Green */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+.add-assessment-entry-button:hover {
+    background-color: #218838;
+}
+
+.assessment-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+}
+
+.calendar-day-header, .calendar-day {
+    border: 1px solid #eee;
+    padding: 8px;
+    min-height: 100px; /* Adjust as needed */
+    position: relative; /* For positioning entries and tooltips */
+}
+
+.calendar-day-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    text-align: center;
+    min-height: auto;
+    padding: 10px 5px;
+}
+
+.calendar-day .day-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.calendar-day.other-month .day-number {
+    color: #aaa; /* Dim numbers for days not in current month */
+}
+
+.assessment-entry {
+    background-color: #e9f5ff; /* Light blue */
+    border-left: 3px solid #007bff; /* Blue accent */
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    cursor: default; /* Or pointer if clickable */
+    position: relative; /* For tooltip */
+}
+.assessment-entry .entry-subject {
+    font-weight: bold;
+    display: block;
+}
+/* Basic Tooltip for Assessment Entry - can be improved */
+.assessment-entry .entry-tooltip {
+    visibility: hidden;
+    width: 180px;
+    background-color: #555;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%; /* Position above the entry */
+    left: 50%;
+    margin-left: -90px; /* Use half of the width to center */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9em;
+    line-height: 1.3;
+}
+.assessment-entry:hover .entry-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* Styles for the smaller "Add Assessment Entry" modal */
+.small-modal .modal-container {
+    width: 90%;
+    max-width: 450px; /* Smaller max width */
+    max-height: 80vh;
+}
+
+#addAssessmentForm div {
+    margin-bottom: 15px;
+}
+#addAssessmentForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+#addAssessmentForm input[type="date"],
+#addAssessmentForm input[type="text"],
+#addAssessmentForm textarea {
+    width: calc(100% - 16px); /* Account for padding */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#addAssessmentForm textarea {
+    resize: vertical;
+}
+.form-button { /* General button style for forms */
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+.form-button:hover {
+    background-color: #0056b3;
+}

@@ -622,7 +622,7 @@ a:hover {
     border: none;
     display: block; 
     flex-grow: 1; 
-    min-height: 450px; /* Sensible minimum height for usability */
+    min-height: 650px; /* Sensible minimum height for usability */
 }
 
 /* --- Styles for the smaller "Add Assessment Entry" modal (if you've added this part) --- */

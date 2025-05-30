@@ -499,3 +499,265 @@ a:hover {
 .form-button:hover {
     background-color: #0056b3;
 }
+/* === MODAL STYLES (Consolidated) === */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.modal.is-visible {
+    display: flex; 
+}
+
+.modal-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); 
+    z-index: 1001;
+}
+
+.modal-container {
+    background-color: #fefefe;
+    margin: auto; 
+    padding: 0; 
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 900px; /* Adjust if you want wider modals */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    z-index: 1002; 
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; 
+}
+
+.modal-header {
+    padding: 15px 20px;
+    background-color: #007bff; 
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 7px; 
+    border-top-right-radius: 7px;
+}
+
+.modal-title-text {
+    margin: 0;
+    font-size: 1.4em;
+}
+
+.modal-close-button {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: #ddd;
+    text-decoration: none;
+}
+
+.modal-body {
+    padding: 20px; 
+    overflow-y: auto; 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* --- Image Specific Styles (within Modal) --- */
+.modal-body .image-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-in; 
+}
+
+.modal-body .image-content-wrapper img {
+    max-width: 100%;  
+    max-height: 100%; 
+    object-fit: contain; 
+    display: block; 
+    transition: transform 0.3s ease; 
+}
+
+.modal-body .image-content-wrapper.is-zoomed {
+    align-items: flex-start; 
+    justify-content: flex-start;
+    cursor: zoom-out;
+}
+
+.modal-body .image-content-wrapper.is-zoomed img {
+    max-width: none;    
+    max-height: none;   
+    object-fit: initial; 
+}
+
+/* --- Iframe Specific Styles (within Modal) --- */
+.modal-body iframe {
+    width: 100%;
+    height: 100%; 
+    border: none;
+    display: block; 
+    flex-grow: 1; 
+    min-height: 450px; /* Sensible minimum height for usability */
+}
+
+/* --- Styles for the smaller "Add Assessment Entry" modal (if you've added this part) --- */
+.small-modal .modal-container { /* This targets the modal with class 'small-modal' */
+    width: 90%;
+    max-width: 450px; 
+    max-height: 80vh;
+}
+
+/* --- Form Styles for Assessment Modal (if you've added this part) --- */
+#addAssessmentForm div {
+    margin-bottom: 15px;
+}
+#addAssessmentForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+#addAssessmentForm input[type="date"],
+#addAssessmentForm input[type="text"],
+#addAssessmentForm textarea {
+    width: calc(100% - 16px); 
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#addAssessmentForm textarea {
+    resize: vertical;
+}
+.form-button { 
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Styles for the mock Assessment Calendar grid (if you've added this part) --- */
+.assessment-calendar-container {
+    /* Styles for the overall container if needed */
+}
+
+.assessment-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.assessment-calendar-month-year {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.add-assessment-entry-button {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+.add-assessment-entry-button:hover {
+    background-color: #218838;
+}
+
+.assessment-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1px solid #ccc;
+    font-size: 0.9em;
+}
+
+.calendar-day-header, .calendar-day {
+    border: 1px solid #eee;
+    padding: 8px;
+    min-height: 100px; 
+    position: relative; 
+}
+
+.calendar-day-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    text-align: center;
+    min-height: auto;
+    padding: 10px 5px;
+}
+
+.calendar-day .day-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.calendar-day.other-month .day-number {
+    color: #aaa; 
+}
+
+.assessment-entry {
+    background-color: #e9f5ff; 
+    border-left: 3px solid #007bff; 
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    cursor: default; 
+    position: relative; 
+}
+.assessment-entry .entry-subject {
+    font-weight: bold;
+    display: block;
+}
+.assessment-entry .entry-tooltip {
+    visibility: hidden;
+    width: 180px;
+    background-color: #555;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%; 
+    left: 50%;
+    margin-left: -90px; 
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.9em;
+    line-height: 1.3;
+}
+.assessment-entry:hover .entry-tooltip {
+    visibility: visible;
+    opacity: 1;
+}

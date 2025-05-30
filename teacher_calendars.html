@@ -294,7 +294,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (type === 'iframe') {
                 const iframe = document.createElement('iframe');
                 iframe.src = source;
-                iframe.setAttribute('frameborder', '0');
+                // No need to set width/height attributes here if CSS handles it.
+                // iframe.setAttribute('frameborder', '0'); // CSS handles border: none
                 mainModalBody.appendChild(iframe);
             } else if (type === 'assessment') {
                 const today = new Date();

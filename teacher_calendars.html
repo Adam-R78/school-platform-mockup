@@ -39,39 +39,103 @@
                 </nav>
             </aside>
 
-            <main class="main-content">
+<main class="main-content">
     <h1>Select a Calendar</h1>
     <div class="card-grid">
 
-        <a href="images/calendar_yearly.jpg" class="card-link">
+        <a href="javascript:void(0);" class="card-link calendar-trigger" 
+           data-type="image" 
+           data-source="images/calendar_yearly.jpg" 
+           data-title="Academic Year">
             <div class="content-card content-card-style1">
                 <h3 class="card-title">Academic Year</h3>
                 <span class="card-subtitle">School Year Overview</span>
             </div>
         </a>
 
-        <a href="images/calendar_google.jpg" class="card-link">
+        <a href="javascript:void(0);" class="card-link calendar-trigger" 
+           data-type="iframe" 
+           data-source="https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York" 
+           data-title="Google Calendar">
             <div class="content-card content-card-style2">
                 <h3 class="card-title">Google Calendar</h3>
-                <span class="card-subtitle">Personalized</span>
+                <span class="card-subtitle">Personalized View</span>
             </div>
         </a>
 
-        <a href="images/calendar_exams.jpg" class="card-link">
+        <a href="javascript:void(0);" class="card-link calendar-trigger" 
+           data-type="assessment" 
+           data-title="Assessment Calendar">
             <div class="content-card content-card-style3">
-                <h3 class="card-title">Final Exams</h3>
-                <span class="card-subtitle">Spring 2025</span>
+                <h3 class="card-title">Assessment Calendar</h3>
+                <span class="card-subtitle">View & Add Entries</span>
             </div>
         </a>
 
-        <a href="images/calendar_map.jpg" class="card-link">
+        <a href="javascript:void(0);" class="card-link calendar-trigger" 
+           data-type="image" 
+           data-source="images/calendar_final_exams.jpg"  <!-- ASSUMING A NEW IMAGE NAME -->
+           data-title="Final Exams">
             <div class="content-card content-card-style4">
-                <h3 class="card-title">MAP testing</h3>
-                <span class="card-subtitle">Spring 2025</span>
+                <h3 class="card-title">Final Exams</h3>
+                <span class="card-subtitle">Spring 2025 Schedule</span>
+            </div>
+        </a>
+
+        <a href="javascript:void(0);" class="card-link calendar-trigger" 
+           data-type="image" 
+           data-source="images/calendar_map_testing.jpg" <!-- ASSUMING A NEW IMAGE NAME -->
+           data-title="MAP Testing">
+            <div class="content-card content-card-style5"> <!-- Using style5 for variety -->
+                <h3 class="card-title">MAP Testing</h3>
+                <span class="card-subtitle">Spring 2025 Schedule</span>
             </div>
         </a>
 
     </div>
+
+    <!-- Main Modal Structure (from previous response - no changes needed here) -->
+    <div id="calendarModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title-text">Calendar Title</h2>
+                <button id="modalCloseButton" class="modal-close-button">×</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                <!-- Calendar content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Secondary Modal for Adding Assessment Entry -->
+    <div id="addAssessmentEntryModal" class="modal small-modal">
+        <div class="modal-overlay add-entry-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="addEntryModalTitle" class="modal-title-text">Add Assessment Entry</h2>
+                <button id="addEntryModalCloseButton" class="modal-close-button">×</button>
+            </div>
+            <div id="addEntryModalBody" class="modal-body">
+                <form id="addAssessmentForm">
+                    <div>
+                        <label for="assessmentDate">Date:</label>
+                        <input type="date" id="assessmentDate" name="assessmentDate" required>
+                    </div>
+                    <div>
+                        <label for="assessmentSubject">Subject:</label>
+                        <input type="text" id="assessmentSubject" name="assessmentSubject" required>
+                    </div>
+                    <div>
+                        <label for="assessmentDescription">Description:</label>
+                        <textarea id="assessmentDescription" name="assessmentDescription" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="form-button">Add Entry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </main>
         </div>
     </div>

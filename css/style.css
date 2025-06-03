@@ -21,6 +21,20 @@ a:hover {
     flex-direction: column;
     min-height: 100vh;
 }
+/* General external link icon for sidebar, etc. */
+/* Make sure this doesn't apply to the action-button-link wrapper itself */
+a[target="_blank"]:not(.action-button-link)::after {
+  content: ""; 
+  display: inline-block;
+  width: 14px;          
+  height: 14px;        
+  margin-left: 3px;
+  background-image: url('../images/external_link.png'); 
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center; 
+  vertical-align: -2px;
+}
 
 /* Header Styles */
 .header {
@@ -233,7 +247,28 @@ a:hover {
 .card-link:hover { /* UPDATED from class-card-link:hover */
     text-decoration: none;
 }
+.action-button-link {
+    text-decoration: none;
+    color: inherit; /* Makes the link inherit text color from .action-button */
+    display: block;   /* Ensures the entire button area is clickable */
+}
 
+.action-button-link:hover {
+    text-decoration: none; /* Prevents underline on hover for the link wrapper */
+}
+/* External link icon specifically for text inside action-button-links */
+.action-button-link[target="_blank"] .action-button span::after {
+  content: ""; 
+  display: inline-block;
+  width: 14px;          
+  height: 14px;        
+  margin-left: 5px; /* Adjust spacing as needed */
+  background-image: url('../images/external_link.png'); 
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center; 
+  vertical-align: middle; /* Or adjust: -2px, text-bottom, etc. */
+}
 
 /* Colored/Styled Button Styles for Dashboard Content Cards */
 /* These primarily ensure text color on a white background, could be actual color variants later */

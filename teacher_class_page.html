@@ -61,9 +61,9 @@
 							<span>Google Drive</span>
 						</div>
 					</a>
-					<div class="action-button">
-						<span>Print Request</span>
-					</div>
+					<div class="action-button" id="openPrintRequestModalBtn">
+                        <span>Print Request</span>
+                    </div>
 					<div class="action-button">
 						<span>Msg Admin</span>
 					</div>
@@ -72,5 +72,140 @@
             </main>
         </div>
     </div>
+	<!-- Print Request Modal Structure -->
+    <div id="printRequestModal" class="modal small-modal"> <!-- Reusing 'small-modal' for consistent sizing -->
+        <div class="modal-overlay print-request-overlay"></div> <!-- Added specific class for overlay if needed -->
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="printRequestModalTitle" class="modal-title-text">Submit Print Request</h2>
+                <button id="printRequestModalCloseButton" class="modal-close-button">×</button>
+            </div>
+            <div id="printRequestModalBody" class="modal-body">
+                <form id="printRequestForm">
+                    <div>
+                        <label for="printReqFile">Requested file:</label>
+                        <input type="text" id="printReqFile" name="printReqFile" required>
+                    </div>
+                    <div>
+                        <label for="printReqCopies">Copies needed:</label>
+                        <input type="number" id="printReqCopies" name="printReqCopies" min="1" value="1" required>
+                    </div>
+                    <div>
+                        <label for="printReqTime">Time needed by:</label>
+                        <input type="text" id="printReqTime" name="printReqTime" placeholder="e.g., Start of 3rd period">
+                    </div>
+                    <div class="checkbox-group"> <!-- Wrapper for checkbox and label -->
+                        <input type="checkbox" id="printReqDoubleSided" name="printReqDoubleSided" checked> <!-- 'checked' attribute here -->
+                        <label for="printReqDoubleSided">Print double-sided</label>
+                    </div>
+                    <div>
+                        <label for="printReqSpecial">Special requests:</label>
+                        <textarea id="printReqSpecial" name="printReqSpecial" rows="3" placeholder="e.g., Stapled, 3-hole punch"></textarea>
+                    </div>
+                    <div>
+                        <label for="printReqLink">Link to file (optional):</label>
+                        <input type="url" id="printReqLink" name="printReqLink" placeholder="https://drive.google.com/... or similar">
+                    </div>
+                    <button type="submit" class="form-button">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Print Request Modal Functionality ---
+    const openPrintRequestBtn = document.getElementById('openPrintRequestModalBtn');
+    const printRequestModal = document.getElementById('printRequestModal');
+    const printRequestModalCloseButton = document.getElementById('printRequestModalCloseButton');
+    const printRequestForm = document.getElementById('printRequestForm');
+    // Ensure the overlay selector is specific if you added a specific class, or use the general one
+    const printRequestOverlay = printRequestModal.querySelector('.modal-overlay');
+
+
+    function openSpecificModal(modalElement) {
+        if (modalElement) {
+            modalElement.classList.add('is-visible');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+    }
+
+    function closeSpecificModal(modalElement) {
+        if (modalElement) {
+            modalElement.classList.remove('is-visible');
+            // Only reset form if it's the print request form
+            if (modalElement === printRequestModal && printRequestForm) {
+                printRequestForm.reset();
+                 // Manually ensure checkbox goes back to default 'checked' state after reset
+                const doubleSidedCheckbox = document.getElementById('printReqDoubleSided');
+                if (doubleSidedCheckbox) {
+                    doubleSidedCheckbox.checked = true;
+                }
+            }
+            // Check if any other modal is visible before restoring scroll
+            // This simple check assumes modals don't stack in a complex way
+            if (!document.querySelector('.modal.is-visible')) {
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }
+
+    if (openPrintRequestBtn) {
+        openPrintRequestBtn.addEventListener('click', () => {
+            openSpecificModal(printRequestModal);
+        });
+    }
+
+    if (printRequestModalCloseButton) {
+        printRequestModalCloseButton.addEventListener('click', () => {
+            closeSpecificModal(printRequestModal);
+        });
+    }
+
+    if (printRequestOverlay) {
+        printRequestOverlay.addEventListener('click', () => {
+            closeSpecificModal(printRequestModal);
+        });
+    }
+
+    if (printRequestForm) {
+        printRequestForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const printRequestData = {
+                requestedFile: document.getElementById('printReqFile').value,
+                copiesNeeded: document.getElementById('printReqCopies').value,
+                timeNeededBy: document.getElementById('printReqTime').value,
+                doubleSided: document.getElementById('printReqDoubleSided').checked,
+                specialRequests: document.getElementById('printReqSpecial').value,
+                linkToFile: document.getElementById('printReqLink').value
+            };
+
+            console.log('Print Request Submitted:', printRequestData);
+            alert('Print request submitted! (This is a mock-up)'); // Simple confirmation
+
+            closeSpecificModal(printRequestModal); // This will also reset the form
+        });
+    }
+
+    // Update global Escape key listener if you have one for other modals,
+    // or add one if this is the first modal on this page.
+    // This example assumes a general escape key handler for any visible modal.
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            const visibleModal = document.querySelector('.modal.is-visible');
+            if (visibleModal) {
+                // You might want to call a generic closeModal function here
+                // or check which modal is visible if different modals need different close logic
+                if (visibleModal.id === 'printRequestModal') {
+                     closeSpecificModal(printRequestModal);
+                }
+                // Add else if for other modals on this page if any
+            }
+        }
+    });
+
+    // --- End Print Request Modal Functionality ---
+});
+</script>
 </body>
 </html>

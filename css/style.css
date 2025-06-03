@@ -343,6 +343,23 @@ a[target="_blank"]:not(.action-button-link)::after {
     border-color: #007bff;
     color: #007bff;
 }
+/* --- Styles for Print Request Form (if needed) --- */
+#printRequestForm .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Consistent spacing with other form groups */
+}
+
+#printRequestForm .checkbox-group input[type="checkbox"] {
+    width: auto;           /* Override general input width if it's set to 100% */
+    margin-right: 8px;     /* Space between checkbox and its label */
+    /* Adjust vertical alignment if needed, though 'align-items: center' on parent helps */
+}
+
+#printRequestForm .checkbox-group label {
+    margin-bottom: 0; /* Remove default bottom margin from label if it's in a flex container */
+    font-weight: normal; /* Optional: make checkbox label not bold if other labels are */
+}
 
 /* Responsive Adjustments (Optional Basic Example) */
 @media (max-width: 768px) {

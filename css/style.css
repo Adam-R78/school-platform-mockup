@@ -518,7 +518,41 @@ a[target="_blank"]:not(.action-button-link)::after {
     max-width: 450px; /* Smaller max width */
     max-height: 80vh;
 }
+#printRequestForm > div { /* Target direct children divs of the form */
+    margin-bottom: 20px; /* Increased from a typical 15px, adjust as needed */
+}
 
+/* If you also want to ensure the checkbox group has the same spacing */
+#printRequestForm .checkbox-group {
+    margin-bottom: 20px; /* Ensure consistent bottom margin */
+}
+/* --- Styles for Utility Buttons within Forms --- */
+.form-utility-button-container {
+    margin-bottom: 10px; /* Space below this button container */
+    text-align: right; /* Optional: align button to the right */
+}
+
+.utility-button {
+    background-color: #6c757d; /* A more neutral color (e.g., grey) */
+    color: white;
+    padding: 6px 12px; /* Slightly smaller padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em; /* Slightly smaller font */
+    text-decoration: none; /* If it were an <a> styled as button */
+    display: inline-block; /* Or block if you want it full width */
+}
+
+.utility-button:hover {
+    background-color: #5a6268; /* Darker shade on hover */
+}
+
+/* Adjust spacing for the "Link to file" div if the button is above it */
+#printRequestForm label[for="printReqLink"] {
+    /* If the button above has margin-bottom, this label might not need extra top margin */
+    /* Or you can add margin-top: 5px; if needed */
+}
 #addAssessmentForm div {
     margin-bottom: 15px;
 }

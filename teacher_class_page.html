@@ -102,9 +102,16 @@
                         <label for="printReqSpecial">Special requests:</label>
                         <textarea id="printReqSpecial" name="printReqSpecial" rows="3" placeholder="e.g., Stapled, 3-hole punch"></textarea>
                     </div>
+                    <!-- New Button to Open Google Drive -->
+                    <div class="form-utility-button-container">
+                        <button type="button" id="openGoogleDriveBtn" class="utility-button">
+                            Open Google Drive to Find File
+                        </button>
+                    </div>
+                    
                     <div>
-                        <label for="printReqLink">Link to file (optional):</label>
-                        <input type="url" id="printReqLink" name="printReqLink" placeholder="https://drive.google.com/... or similar">
+                        <label for="printReqLink">Link to file:</label>
+                        <input type="url" id="printReqLink" name="printReqLink" placeholder="Paste Google Drive link here" required>
                     </div>
                     <button type="submit" class="form-button">Submit Request</button>
                 </form>
@@ -121,7 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure the overlay selector is specific if you added a specific class, or use the general one
     const printRequestOverlay = printRequestModal.querySelector('.modal-overlay');
 
+	// --- Add functionality for "Open Google Drive" button ---
+    const openGoogleDriveButton = document.getElementById('openGoogleDriveBtn');
 
+    if (openGoogleDriveButton) {
+        openGoogleDriveButton.addEventListener('click', () => {
+            // Opens Google Drive in a new tab
+            window.open('https://drive.google.com/drive/my-drive', '_blank');
+        });
+    }
     function openSpecificModal(modalElement) {
         if (modalElement) {
             modalElement.classList.add('is-visible');
